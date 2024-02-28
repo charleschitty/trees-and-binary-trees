@@ -8,18 +8,15 @@ import { TreeNodeNum } from "../common/tree";
 function maxDepth(node: TreeNodeNum | null): number {
   //basecase
   if (node === null) return 0;
-  let count = 1;
+
   let longest = 0;
-  for (const child of node.children) {
-    count += maxDepth(child);
-    if (node.children.length === 0) {
-      if (longest < count) {
-        longest = count;
-      }
-      count = 1;
+
+  for (const child of node.children) { // 2, 3
+    let childDepth = maxDepth(child)
+    longest = Math.max(longest, childDepth)
     }
+
+  return longest + 1
   }
-  return longest;
-}
 
 export { maxDepth };
