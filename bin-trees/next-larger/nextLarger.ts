@@ -15,21 +15,16 @@ function nextLarger(node: BNodeNum, lowerBound: number): number | null {
   //           5     5
 
   while (!stack.isEmpty()) {
-    let current = stack.pop();
+    let current = stack.pop()!;
     console.log("My stack is", stack);
     console.log("My current is", current);
 
-    if (lowerBound < current!.val && current!.val < smallest) {
-      smallest = current!.val;
+    if (lowerBound < current.val && current.val < smallest) {
+      smallest = current.val;
     }
 
-    if (node.lnode) {
-      stack.push(node.lnode);
-    }
-
-    if (node.rnode) {
-      stack.push(node.rnode);
-    }
+    if (current.lnode) stack.push(current.lnode);
+    if (current.rnode) stack.push(current.rnode);
   }
 
   if (smallest === Infinity) {
@@ -38,6 +33,21 @@ function nextLarger(node: BNodeNum, lowerBound: number): number | null {
     return smallest;
   }
 }
+
+// const stack: Stack<BNodeNum> = new Stack([node]);
+// let closest = Infinity;
+
+// while (!stack.isEmpty()) {
+//   let node = stack.pop()!;
+
+//   if (node.val > lowerBound && node.val < closest) closest = node.val;
+
+//   if (node.lnode) stack.push(node.lnode);
+//   if (node.rnode) stack.push(node.rnode);
+// }
+
+// return closest === Infinity ? null : closest;
+// }
 export { nextLarger };
 
 // [  1 , 3 , 5 ]
