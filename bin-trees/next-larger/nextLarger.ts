@@ -6,7 +6,27 @@ import { BNodeNum } from "../common/bintree";
  **/
 
 function nextLarger(node: BNodeNum, lowerBound: number): number | null {
-  return null;
-}
+  let current: BNodeNum | null = node;
 
-export { nextLarger };
+  let smallest = Infinity;
+
+  while (current) {
+    if (lowerBound < current.val && current.val < smallest )
+      smallest = current.val;
+
+    current = (lowerBound < current.val)
+      ? current.lnode
+      : current.rnode;
+  }
+  if (smallest === Infinity) {
+      return null;
+    } else {
+      return smallest;
+    }
+}
+  export { nextLarger };
+
+// [  1 , 3 , 5 ]
+
+//   lowerBound = 2
+//

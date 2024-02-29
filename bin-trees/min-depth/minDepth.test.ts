@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { largeTree, longTree, smallTree } from "../common/bintree.test";
 import { minDepth } from "./minDepth";
+import { BinTree } from "../common/bintree";
 
 describe("minDepth", function () {
   it("handles simple trees", function () {

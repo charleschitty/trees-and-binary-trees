@@ -6,8 +6,8 @@ import { BNodeNum } from "../common/bintree";
  **/
 
 function minDepth(node: BNodeNum): number {
-  if (node === null) return Infinity
-  // if(!node.lnode && !node.rnode) return Infinity
+  // if (node === null) return Infinity
+  if(!node.lnode && !node.rnode) return 1;
 
   // A. ok A has a left node and a right node
   // continue
@@ -21,11 +21,11 @@ function minDepth(node: BNodeNum): number {
   let rightLength = Infinity
 
   if (node.lnode){
-    leftLength = minDepth(node.lnode!)
+    leftLength = minDepth(node.lnode)
   }
 
   if (node.rnode){
-    rightLength = minDepth(node.rnode!)
+    rightLength = minDepth(node.rnode)
   }
 
   return Math.min(
@@ -34,3 +34,8 @@ function minDepth(node: BNodeNum): number {
 }
 
 export { minDepth };
+
+//              6
+//            /   \
+//           5     5
+//
