@@ -6,7 +6,31 @@ import { BNodeNum } from "../common/bintree";
  **/
 
 function minDepth(node: BNodeNum): number {
-  return 42;
+  if (node === null) return Infinity
+  // if(!node.lnode && !node.rnode) return Infinity
+
+  // A. ok A has a left node and a right node
+  // continue
+  // b...
+  // C has a left node but no right node
+  // continue
+  // G has no left node nor right node
+  // end
+  // C.rightnode has no left node aand no right node and is nulL (no count)
+  let leftLength = Infinity
+  let rightLength = Infinity
+
+  if (node.lnode){
+    leftLength = minDepth(node.lnode!)
+  }
+
+  if (node.rnode){
+    rightLength = minDepth(node.rnode!)
+  }
+
+  return Math.min(
+    leftLength,
+    rightLength) + 1;
 }
 
 export { minDepth };
